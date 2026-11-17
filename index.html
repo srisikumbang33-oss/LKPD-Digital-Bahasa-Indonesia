@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Digital: Petualangan Teks Eksplanasi - Rahasia Terjadinya Hujan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        sun: {
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f9ff;
+            color: #0c4a6e;
+        }
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0f2fe;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+
+        /* Animations */
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .sun-spin {
+            animation: spin 20s linear infinite;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Print Style Optimization */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .page-section {
+                display: block !important;
+                page-break-after: always;
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                margin-bottom: 20px !important;
+            }
+            textarea, input[type="text"] {
+                border: 1px solid #999 !important;
+                background: #fff !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-sky-50 text-slate-800">
+
+    <!-- HEADER / NAVIGATION BANNER -->
+    <header class="bg-gradient-to-r from-sky-600 via-sky-500 to-sky-400 text-white shadow-lg sticky top-0 z-50 no-print border-b-4 border-sun-300">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('sampul')">
+                <div class="w-11 h-11 bg-white text-sky-600 rounded-2xl flex items-center justify-center text-2xl shadow-md animate-float">
+                    <i class="fa-solid fa-cloud-showers-heavy"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold font-display tracking-wide leading-none">
+                        LKPD DIGITAL INTERAKTIF
+                    </h1>
+                    <p class="text-xs text-sky-100 font-semibold mt-0.5">
+                        Bahasa Indonesia Kelas V (Fase C) • Topik: Proses Terjadinya Hujan
+                    </p>
+                </div>
+            </div>
+
+            <!-- Identity Badge & Print Button -->
+            <div class="flex items-center space-x-2">
+                <div class="hidden md:flex flex-col text-right bg-white/10 px-3 py-1 rounded-xl border border-white/20 text-xs">
+                    <span class="font-bold">Penyusun: Srianti</span>
+                    <span class="text-sky-100">SD N / Kurikulum Merdeka</span>
+                </div>
+                <button onclick="triggerPrint()" class="bg-sun-400 hover:bg-sun-500 text-slate-900 font-extrabold px-4 py-2 rounded-xl shadow-md transition text-xs flex items-center space-x-1.5 border-b-2 border-sun-600">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Cetak / Simpan LKPD</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB NAVIGATION STEPPER -->
+        <nav class="bg-sky-700/80 backdrop-blur overflow-x-auto no-scrollbar border-t border-sky-500/50">
+            <div class="max-w-7xl mx-auto px-2 flex space-x-1 py-1.5 text-xs font-bold whitespace-nowrap">
+                <button onclick="switchTab('sampul')" id="tab-sampul" class="tab-btn px-3 py-2 rounded-xl text-white hover:bg-sky-600 transition flex items-center space-x-1.5 bg-sky-800">
+                    <i class="fa-solid fa-id-card"></i> <span>1. Identitas</span>
+                </button>
+                <button onclick="switchTab('tujuan')" id="tab-tujuan" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-bullseye"></i> <span>2. Tujuan</span>
+                </button>
+                <button onclick="switchTab('petunjuk')" id="tab-petunjuk" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-list-check"></i> <span>3. Petunjuk</span>
+                </button>
+                <button onclick="switchTab('kegiatan1')" id="tab-kegiatan1" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-magnifying-glass"></i> <span>4. Kegiatan 1</span>
+                </button>
+                <button onclick="switchTab('kegiatan2')" id="tab-kegiatan2" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-flask"></i> <span>5. Kegiatan 2</span>
+                </button>
+                <button onclick="switchTab('kegiatan3')" id="tab-kegiatan3" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-pen-ruler"></i> <span>6. Kegiatan 3</span>
+                </button>
+                <button onclick="switchTab('kegiatan4')" id="tab-kegiatan4" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-pen-to-square"></i> <span>7. Kegiatan 4</span>
+                </button>
+                <button onclick="switchTab('kegiatan5')" id="tab-kegiatan5" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-comments"></i> <span>8. Kegiatan 5</span>
+                </button>
+                <button onclick="switchTab('refleksi')" id="tab-refleksi" class="tab-btn px-3 py-2 rounded-xl text-sky-100 hover:bg-sky-600 transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-face-smile"></i> <span>9. Refleksi</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN LKPD CONTENT CONTAINER -->
+    <main class="flex-1 max-w-5xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        <!-- ================= 1. HALAMAN SAMPUL / IDENTITAS ================= -->
+        <section id="sec-sampul" class="page-section bg-white rounded-3xl p-6 md:p-10 shadow-xl border-4 border-sky-200 relative overflow-hidden">
+            <!-- Background Decorative Icons -->
+            <div class="absolute -top-10 -right-10 text-sun-300 opacity-40 sun-spin">
+                <i class="fa-solid fa-sun text-9xl"></i>
+            </div>
+            <div class="absolute bottom-4 right-6 text-sky-200 opacity-50 animate-float">
+                <i class="fa-solid fa-cloud-showers-water text-8xl"></i>
+            </div>
+
+            <div class="relative z-10 text-center space-y-4">
+                <span class="inline-block bg-sky-100 text-sky-800 font-extrabold px-4 py-1.5 rounded-full text-xs tracking-wider uppercase border border-sky-300">
+                    LEMBAR KERJA PESERTA DIDIK (LKPD) DIGITAL
+                </span>
+
+                <h1 class="text-3xl md:text-5xl font-black text-sky-900 leading-tight">
+                    PETUALANGAN TEKS EKSPLANASI:<br>
+                    <span class="text-sun-500 drop-shadow-sm">"RAHASIA TERJADINYA HUJAN"</span>
+                </h1>
+
+                <!-- Graphic Cartoon Header -->
+                <div class="py-4 flex justify-center items-center space-x-6 text-5xl">
+                    <span class="animate-bounce" style="animation-delay: 0.1s;">☀️</span>
+                    <span class="animate-bounce" style="animation-delay: 0.3s;">☁️</span>
+                    <span class="animate-bounce" style="animation-delay: 0.5s;">💧</span>
+                    <span class="animate-bounce" style="animation-delay: 0.7s;">🌈</span>
+                </div>
+
+                <!-- Academic Metadata Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-sky-50/80 p-4 rounded-2xl border border-sky-200 text-xs font-bold text-sky-900 max-w-3xl mx-auto">
+                    <div class="bg-white p-2.5 rounded-xl border border-sky-200">
+                        <span class="text-slate-500 font-normal block">Mata Pelajaran</span>
+                        <span>Bahasa Indonesia</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-xl border border-sky-200">
+                        <span class="text-slate-500 font-normal block">Kelas / Fase</span>
+                        <span>V (Lima) / Fase C</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-xl border border-sky-200">
+                        <span class="text-slate-500 font-normal block">Semester</span>
+                        <span>1 (Ganjil)</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-xl border border-sky-200">
+                        <span class="text-slate-500 font-normal block">Alokasi Waktu</span>
+                        <span>2 × 35 Menit</span>
+                    </div>
+                </div>
+
+                <div class="text-xs font-semibold text-slate-500 pt-1">
+                    Disusun oleh: <strong class="text-sky-800">Srianti</strong> • Model Problem Based Learning (PBL) & Deep Learning
+                </div>
+
+                <!-- FORM IDENTITAS MURID -->
+                <div class="mt-8 bg-gradient-to-br from-sky-100 to-sun-100 p-6 rounded-3xl border-2 border-sky-300 text-left max-w-2xl mx-auto space-y-4 shadow-sm">
+                    <h3 class="text-base font-bold text-sky-900 border-b-2 border-sky-300 pb-2 flex items-center">
+                        <i class="fa-solid fa-user-pen mr-2 text-sky-600"></i> IDENTITAS MURID / KELOMPOK
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bold">
+                        <div>
+                            <label class="block text-slate-700 mb-1">Nama Lengkap Murid:</label>
+                            <input type="text" id="id-nama" placeholder="Tulis namamu di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 mb-1">Kelas / No. Absen:</label>
+                            <input type="text" id="id-kelas" placeholder="Contoh: V-A / 12" class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 mb-1">Nama Kelompok:</label>
+                            <input type="text" id="id-kelompok" placeholder="Contoh: Kelompok Awan Cumulus" class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 mb-1">Tanggal Pengerjaan:</label>
+                            <input type="text" id="id-tanggal" value="9 November 2026" class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 no-print">
+                    <button onclick="switchTab('tujuan')" class="bg-sky-600 hover:bg-sky-700 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 text-sm flex items-center justify-center space-x-2 mx-auto">
+                        <span>Lanjut ke Halaman Tujuan Pembelajaran</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 2. TUJUAN PEMBELAJARAN ================= -->
+        <section id="sec-tujuan" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 text-2xl font-bold">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-sky-900">Tujuan Pembelajaran Kita</h2>
+                    <p class="text-xs text-slate-500">Target hebat yang akan kamu capai setelah menyelesaikan LKPD ini!</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold">
+                <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-start space-x-3">
+                    <span class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</span>
+                    <div>
+                        <h4 class="text-sky-900 font-extrabold mb-1">Menemukan Informasi Penting</h4>
+                        <p class="text-slate-600 font-normal">Murid mampu menemukan informasi penting (5W1H) dalam teks eksplanasi tentang proses terjadinya hujan.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-start space-x-3">
+                    <span class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</span>
+                    <div>
+                        <h4 class="text-sky-900 font-extrabold mb-1">Mengidentifikasi Struktur Teks</h4>
+                        <p class="text-slate-600 font-normal">Murid mampu mengenali 3 bagian struktur teks eksplanasi: Pernyataan Umum, Deretan Penjelas, dan Interpretasi.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-start space-x-3">
+                    <span class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</span>
+                    <div>
+                        <h4 class="text-sky-900 font-extrabold mb-1">Menjelaskan Sebab-Akibat</h4>
+                        <p class="text-slate-600 font-normal">Murid mampu menghubungkan peristiwa sebab dan akibat dalam proses terjadinya hujan.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-start space-x-3">
+                    <span class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">4</span>
+                    <div>
+                        <h4 class="text-sky-900 font-extrabold mb-1">Mengurutkan Tahapan Hujan</h4>
+                        <p class="text-slate-600 font-normal">Murid mampu mengurutkan tahapan siklus air (Evaporasi → Kondensasi → Awan → Presipitasi) secara runtut.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-start space-x-3">
+                    <span class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">5</span>
+                    <div>
+                        <h4 class="text-sky-900 font-extrabold mb-1">Menyusun Kerangka Teks</h4>
+                        <p class="text-slate-600 font-normal">Murid mampu membuat kerangka tulisan berdasarkan informasi yang telah diperoleh.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-start space-x-3">
+                    <span class="w-7 h-7 bg-sky-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">6</span>
+                    <div>
+                        <h4 class="text-sky-900 font-extrabold mb-1">Menulis Teks Eksplanasi</h4>
+                        <p class="text-slate-600 font-normal">Murid mampu menulis teks eksplanasi sederhana menggunakan bahasa sendiri secara runtut.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('sampul')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('petunjuk')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Lanjut ke Petunjuk <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 3. PETUNJUK PENGERJAAN ================= -->
+        <section id="sec-petunjuk" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200">
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-12 h-12 bg-sun-200 rounded-2xl flex items-center justify-center text-sun-700 text-2xl font-bold">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-sky-900">Petunjuk Pengerjaan LKPD</h2>
+                    <p class="text-xs text-slate-500">Ikuti 7 langkah mudah ini agar petualangan belajarmu lancar!</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-xs font-bold text-slate-700">
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-book-open"></i></div>
+                    <span>1. Bacalah setiap petunjuk dan pertanyaan dengan teliti sebelum menjawab.</span>
+                </div>
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-video"></i></div>
+                    <span>2. Amati video pembelajaran atau gambar yang ditampilkan oleh gurumu di kelas.</span>
+                </div>
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-file-lines"></i></div>
+                    <span>3. Pelajari bahan ajar tentang proses terjadinya hujan yang ada pada buku/media.</span>
+                </div>
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-users"></i></div>
+                    <span>4. Kerjakan kegiatan kelompok bersama teman-temanmu dengan saling membantu.</span>
+                </div>
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-pencil"></i></div>
+                    <span>5. Tuliskan jawaban menggunakan bahasamu sendiri yang jujur dan jelas.</span>
+                </div>
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-user-pen"></i></div>
+                    <span>6. Kerjakan tugas menulis teks eksplanasi secara mandiri dan percaya diri.</span>
+                </div>
+                <div class="p-3.5 bg-sky-50 rounded-2xl border border-sky-200 flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-sky-500 text-white rounded-xl flex items-center justify-center text-sm"><i class="fa-solid fa-circle-check"></i></div>
+                    <span>7. Periksa kembali seluruh jawaban sebelum dikumpulkan atau dicetak!</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('tujuan')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('kegiatan1')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Mulai Kegiatan 1 <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 4. KEGIATAN 1 – AYO MENGAMATI DAN MENEMUKAN MASALAH ================= -->
+        <section id="sec-kegiatan1" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200 space-y-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 text-2xl font-bold">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div>
+                    <span class="bg-sky-200 text-sky-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">PBL Step 1: Orientasi Masalah</span>
+                    <h2 class="text-2xl font-bold text-sky-900">Kegiatan 1: Ayo Mengamati & Menemukan Masalah</h2>
+                </div>
+            </div>
+
+            <!-- Problem Scenario Box -->
+            <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-6 rounded-3xl shadow-md space-y-3">
+                <div class="flex items-center space-x-3">
+                    <span class="text-4xl animate-bounce">🌧️</span>
+                    <h3 class="text-lg font-bold">Rahasia Air yang Jatuh dari Langit</h3>
+                </div>
+                <p class="text-xs md:text-sm leading-relaxed text-sky-50">
+                    "Pernahkah kamu memperhatikan hujan yang turun dari langit? Sebelum menjadi titik-titik air hujan, air mengalami beberapa proses. Namun, bagaimana air yang ada di laut, sungai, dan danau bisa berubah menjadi uap lalu turun kembali sebagai air hujan?"
+                </p>
+            </div>
+
+            <!-- Starter Questions Form -->
+            <div class="space-y-4">
+                <h3 class="text-sm font-extrabold text-sky-900 flex items-center">
+                    <i class="fa-solid fa-circle-question text-sun-500 mr-2"></i> Jawablah Pertanyaan Pemantik Berikut (Berdasarkan Pengamatan Awalmu):
+                </h3>
+
+                <div class="space-y-4 text-xs font-bold">
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1.5">1. Dari mana asal air hujan?</label>
+                        <textarea id="k1-q1" rows="2" placeholder="Tuliskan jawabanmu..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1.5">2. Mengapa air di permukaan bumi (laut/sungai/danau) dapat menguap ke udara?</label>
+                        <textarea id="k1-q2" rows="2" placeholder="Tuliskan jawabanmu..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1.5">3. Bagaimana uap air di langit bisa berubah menjadi titik-titik air?</label>
+                        <textarea id="k1-q3" rows="2" placeholder="Tuliskan jawabanmu..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1.5">4. Mengapa titik-titik air di awan akhirnya jatuh turun sebagai hujan?</label>
+                        <textarea id="k1-q4" rows="2" placeholder="Tuliskan jawabanmu..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('petunjuk')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('kegiatan2')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Lanjut ke Kegiatan 2 <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 5. KEGIATAN 2 – AYO MENYELIDIKI PROSES TERJADINYA HUJAN ================= -->
+        <section id="sec-kegiatan2" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200 space-y-8">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 text-2xl font-bold">
+                    <i class="fa-solid fa-flask"></i>
+                </div>
+                <div>
+                    <span class="bg-sky-200 text-sky-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">PBL Step 2 & 3: Penyelidikan Kelompok</span>
+                    <h2 class="text-2xl font-bold text-sky-900">Kegiatan 2: Ayo Menyelidiki Proses Terjadinya Hujan</h2>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS A: MENEMUKAN INFORMASI PENTING -->
+            <div class="space-y-4">
+                <div class="bg-sky-100 p-3 rounded-2xl border border-sky-300 font-extrabold text-xs text-sky-900 flex items-center space-x-2">
+                    <span class="bg-sky-600 text-white px-2 py-0.5 rounded-lg">Aktivitas A</span>
+                    <span>Menemukan Informasi Penting dalam Teks Eksplanasi</span>
+                </div>
+
+                <div class="space-y-3 text-xs font-bold">
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">1. Peristiwa apa yang dijelaskan dalam teks "Proses Terjadinya Hujan"?</label>
+                        <textarea id="k2a-q1" rows="2" placeholder="Jawab di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">2. Apa yang menyebabkan air di permukaan bumi mengalami penguapan?</label>
+                        <textarea id="k2a-q2" rows="2" placeholder="Jawab di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">3. Apa yang dimaksud dengan kondensasi?</label>
+                        <textarea id="k2a-q3" rows="2" placeholder="Jawab di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">4. Bagaimana awan dapat terbentuk di atmosfer?</label>
+                        <textarea id="k2a-q4" rows="2" placeholder="Jawab di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">5. Mengapa titik-titik air di dalam awan akhirnya turun sebagai hujan?</label>
+                        <textarea id="k2a-q5" rows="2" placeholder="Jawab di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS B: STRUKTUR TEKS EKSPLANASI -->
+            <div class="space-y-4">
+                <div class="bg-sun-200 p-3 rounded-2xl border border-sun-300 font-extrabold text-xs text-slate-900 flex items-center space-x-2">
+                    <span class="bg-sun-500 text-slate-900 px-2 py-0.5 rounded-lg">Aktivitas B</span>
+                    <span>Mengenali Struktur Teks Eksplanasi</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse border border-sky-200 rounded-2xl overflow-hidden">
+                        <thead>
+                            <tr class="bg-sky-600 text-white font-extrabold">
+                                <th class="p-3 border border-sky-500 w-1/3">Nama Struktur Teks</th>
+                                <th class="p-3 border border-sky-500">Isi / Informasi yang Ditemukan dalam Teks</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-sky-200 bg-sky-50/50">
+                            <tr>
+                                <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                    1. Pernyataan Umum<br>
+                                    <span class="text-[10px] text-slate-500 font-normal">(Pembuka Teks)</span>
+                                </td>
+                                <td class="p-2 border border-sky-200">
+                                    <textarea id="k2b-umum" rows="3" placeholder="Tuliskan isi pernyataan umum dari teks eksplanasi hujan..." class="w-full bg-white border border-sky-300 rounded-xl p-2 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                    2. Deretan Penjelas<br>
+                                    <span class="text-[10px] text-slate-500 font-normal">(Isi Proses Urutan)</span>
+                                </td>
+                                <td class="p-2 border border-sky-200">
+                                    <textarea id="k2b-penjelas" rows="4" placeholder="Tuliskan isi deretan penjelas (proses penguapan, kondensasi, awan, hujan)..." class="w-full bg-white border border-sky-300 rounded-xl p-2 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                    3. Interpretasi / Penutup<br>
+                                    <span class="text-[10px] text-slate-500 font-normal">(Kesimpulan)</span>
+                                </td>
+                                <td class="p-2 border border-sky-200">
+                                    <textarea id="k2b-penutup" rows="3" placeholder="Tuliskan kesimpulan akhir tentang pentingnya proses hujan..." class="w-full bg-white border border-sky-300 rounded-xl p-2 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS C: HUBUNGAN SEBAB-AKIBAT -->
+            <div class="space-y-4">
+                <div class="bg-green-100 p-3 rounded-2xl border border-green-300 font-extrabold text-xs text-green-900 flex items-center space-x-2">
+                    <span class="bg-green-600 text-white px-2 py-0.5 rounded-lg">Aktivitas C</span>
+                    <span>Menemukan Hubungan Sebab-Akibat</span>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex flex-col md:flex-row md:items-center gap-3">
+                        <div class="font-bold text-sky-900 md:w-1/2">
+                            1. Matahari memanaskan air di laut, sungai, dan danau <i class="fa-solid fa-arrow-right text-sky-500 mx-1"></i>
+                        </div>
+                        <input type="text" id="k2c-1" placeholder="Tuliskan akibat yang terjadi..." class="md:w-1/2 bg-white border border-sky-300 rounded-xl p-2.5 font-normal text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                    </div>
+
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex flex-col md:flex-row md:items-center gap-3">
+                        <div class="font-bold text-sky-900 md:w-1/2">
+                            2. Uap air naik ke atmosfer dan mengalami pendinginan <i class="fa-solid fa-arrow-right text-sky-500 mx-1"></i>
+                        </div>
+                        <input type="text" id="k2c-2" placeholder="Tuliskan akibat yang terjadi..." class="md:w-1/2 bg-white border border-sky-300 rounded-xl p-2.5 font-normal text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                    </div>
+
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex flex-col md:flex-row md:items-center gap-3">
+                        <div class="font-bold text-sky-900 md:w-1/2">
+                            3. Titik-titik air mengumpul semakin banyak <i class="fa-solid fa-arrow-right text-sky-500 mx-1"></i>
+                        </div>
+                        <input type="text" id="k2c-3" placeholder="Tuliskan akibat yang terjadi..." class="md:w-1/2 bg-white border border-sky-300 rounded-xl p-2.5 font-normal text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                    </div>
+
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex flex-col md:flex-row md:items-center gap-3">
+                        <div class="font-bold text-sky-900 md:w-1/2">
+                            4. Titik-titik air di awan semakin tebal dan berat <i class="fa-solid fa-arrow-right text-sky-500 mx-1"></i>
+                        </div>
+                        <input type="text" id="k2c-4" placeholder="Tuliskan akibat yang terjadi..." class="md:w-1/2 bg-white border border-sky-300 rounded-xl p-2.5 font-normal text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS D: MENGURUTKAN PROSES TERJADINYA HUJAN -->
+            <div class="space-y-4">
+                <div class="bg-purple-100 p-3 rounded-2xl border border-purple-300 font-extrabold text-xs text-purple-900 flex items-center space-x-2">
+                    <span class="bg-purple-600 text-white px-2 py-0.5 rounded-lg">Aktivitas D</span>
+                    <span>Mengurutkan Proses Terjadinya Hujan & Pertanyaan Pemahaman</span>
+                </div>
+
+                <p class="text-xs text-slate-600 font-bold">
+                    Pilihlah nomor urutan (1, 2, 3, atau 4) yang benar untuk setiap tahapan proses terjadinya hujan berikut:
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold">
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex items-center justify-between">
+                        <span>Air mengalami penguapan (Evaporasi)</span>
+                        <select id="k2d-step-evap" class="bg-white border border-sky-300 rounded-xl p-2 font-bold text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            <option value="">Pilih Urutan</option>
+                            <option value="1">Urutan 1</option>
+                            <option value="2">Urutan 2</option>
+                            <option value="3">Urutan 3</option>
+                            <option value="4">Urutan 4</option>
+                        </select>
+                    </div>
+
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex items-center justify-between">
+                        <span>Terjadi pengembunan (Kondensasi)</span>
+                        <select id="k2d-step-kond" class="bg-white border border-sky-300 rounded-xl p-2 font-bold text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            <option value="">Pilih Urutan</option>
+                            <option value="1">Urutan 1</option>
+                            <option value="2">Urutan 2</option>
+                            <option value="3">Urutan 3</option>
+                            <option value="4">Urutan 4</option>
+                        </select>
+                    </div>
+
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex items-center justify-between">
+                        <span>Titik-titik air berkumpul membentuk awan</span>
+                        <select id="k2d-step-awan" class="bg-white border border-sky-300 rounded-xl p-2 font-bold text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            <option value="">Pilih Urutan</option>
+                            <option value="1">Urutan 1</option>
+                            <option value="2">Urutan 2</option>
+                            <option value="3">Urutan 3</option>
+                            <option value="4">Urutan 4</option>
+                        </select>
+                    </div>
+
+                    <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200 flex items-center justify-between">
+                        <span>Air jatuh ke permukaan bumi (Hujan/Presipitasi)</span>
+                        <select id="k2d-step-hujan" class="bg-white border border-sky-300 rounded-xl p-2 font-bold text-sky-900 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                            <option value="">Pilih Urutan</option>
+                            <option value="1">Urutan 1</option>
+                            <option value="2">Urutan 2</option>
+                            <option value="3">Urutan 3</option>
+                            <option value="4">Urutan 4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Deep Learning Critical Question -->
+                <div class="bg-sun-50 p-4 rounded-2xl border border-sun-300 text-xs font-bold space-y-1.5">
+                    <label class="block text-sun-900">
+                        <i class="fa-solid fa-lightbulb text-sun-600 mr-1"></i> Pertanyaan Berpikir Kritis: "Apa yang mungkin terjadi jika uap air di langit tidak mengalami proses kondensasi?"
+                    </label>
+                    <textarea id="k2d-kritis" rows="3" placeholder="Tuliskan analisis pemikiran kelompokmu..." class="w-full bg-white border border-sun-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sun-400 focus:outline-none font-normal"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('kegiatan1')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('kegiatan3')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Lanjut Menyusun Kerangka <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 6. KEGIATAN 3 – AYO MENYUSUN KERANGKA TEKS ================= -->
+        <section id="sec-kegiatan3" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200 space-y-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 text-2xl font-bold">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                </div>
+                <div>
+                    <span class="bg-sky-200 text-sky-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">PBL Step 4: Tugas Mandiri</span>
+                    <h2 class="text-2xl font-bold text-sky-900">Kegiatan 3: Ayo Menyusun Kerangka Teks</h2>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-600 font-semibold leading-relaxed">
+                "Setelah memahami proses terjadinya hujan, sekarang susunlah kerangka teks eksplanasi secara mandiri berdasarkan informasi yang telah kamu pelajari!"
+            </p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs text-left border-collapse border border-sky-200 rounded-2xl overflow-hidden">
+                    <thead>
+                        <tr class="bg-sky-600 text-white font-extrabold">
+                            <th class="p-3 border border-sky-500 w-1/3">Struktur Teks Eksplanasi</th>
+                            <th class="p-3 border border-sky-500">Hal yang Akan Ditulis dalam Paragraf</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-sky-200 bg-sky-50/50">
+                        <tr>
+                            <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                Pernyataan Umum
+                            </td>
+                            <td class="p-2 border border-sky-200">
+                                <textarea id="k3-umum" rows="2" placeholder="Jelaskan secara singkat apa itu hujan dan bagaimana gambaran umumnya..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                Deretan Penjelas 1
+                            </td>
+                            <td class="p-2 border border-sky-200">
+                                <textarea id="k3-penjelas1" rows="2" placeholder="Jelaskan proses penguapan air (evaporasi) akibat sinar matahari..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                Deretan Penjelas 2
+                            </td>
+                            <td class="p-2 border border-sky-200">
+                                <textarea id="k3-penjelas2" rows="2" placeholder="Jelaskan proses pengembunan (kondensasi) dan pembentukan awan..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                Deretan Penjelas 3
+                            </td>
+                            <td class="p-2 border border-sky-200">
+                                <textarea id="k3-penjelas3" rows="2" placeholder="Jelaskan proses turunnya air hujan ke permukaan bumi..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-sky-200 font-bold text-sky-900 bg-sky-100/80">
+                                Interpretasi / Penutup
+                            </td>
+                            <td class="p-2 border border-sky-200">
+                                <textarea id="k3-penutup" rows="2" placeholder="Tuliskan kesimpulan akhir tentang proses dan manfaat hujan..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('kegiatan2')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('kegiatan4')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Lanjut Menulis Teks <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 7. KEGIATAN 4 – AYO MENULIS TEKS EKSPLANASI ================= -->
+        <section id="sec-kegiatan4" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200 space-y-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 text-2xl font-bold">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+                <div>
+                    <span class="bg-sky-200 text-sky-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">PBL Step 4: Menulis Mandiri</span>
+                    <h2 class="text-2xl font-bold text-sky-900">Kegiatan 4: Ayo Menulis Teks Eksplanasi</h2>
+                </div>
+            </div>
+
+            <!-- Helpful Language Tool Box -->
+            <div class="bg-sun-100 p-4 rounded-2xl border border-sun-300 text-xs font-bold text-slate-800 space-y-2">
+                <div class="flex items-center text-sun-900 font-extrabold text-sm">
+                    <i class="fa-solid fa-lightbulb text-sun-600 mr-2"></i> Kotak Pengingat Kebahasaan:
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-normal">
+                    <div class="bg-white p-2 rounded-xl border border-sun-200">
+                        <strong class="text-sky-900">Kata Sebab-Akibat:</strong> <em>karena, sebab, sehingga, akibatnya.</em>
+                    </div>
+                    <div class="bg-white p-2 rounded-xl border border-sun-200">
+                        <strong class="text-sky-900">Kata Urutan Waktu:</strong> <em>pertama, kemudian, selanjutnya, akhirnya.</em>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-600 font-semibold pt-1">
+                    *Jangan lupa gunakan istilah sains penting: <strong>evaporasi</strong>, <strong>kondensasi</strong>, dan <strong>presipitasi</strong>.
+                </p>
+            </div>
+
+            <!-- Essay Form Workspace -->
+            <div class="space-y-4 text-xs font-bold">
+                <div>
+                    <label class="block text-sky-900 mb-1">Judul Teks Eksplanasi:</label>
+                    <input type="text" id="k4-judul" value="Proses Terjadinya Hujan" class="w-full bg-white border border-sky-300 rounded-xl p-3 text-sky-900 font-extrabold text-sm focus:ring-2 focus:ring-sky-400 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sky-900 mb-1">Paragraf 1 — Pernyataan Umum (Pembuka):</label>
+                    <textarea id="k4-para1" rows="3" placeholder="Kembangkan kerangka pernyataan umum menjadi paragraf pembuka..." class="w-full bg-white border border-sky-300 rounded-xl p-3 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sky-900 mb-1">Paragraf 2 & 3 — Deretan Penjelas (Isi Urutan Proses & Sebab-Akibat):</label>
+                    <textarea id="k4-para2" rows="5" placeholder="Kembangkan tahapan penguapan, kondensasi, awan, hingga hujan turun..." class="w-full bg-white border border-sky-300 rounded-xl p-3 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sky-900 mb-1">Paragraf 4 — Interpretasi / Penutup (Kesimpulan):</label>
+                    <textarea id="k4-para3" rows="3" placeholder="Tuliskan paragraf kesimpulan penutup tulisanmu..." class="w-full bg-white border border-sky-300 rounded-xl p-3 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                </div>
+            </div>
+
+            <!-- Self-Checklist Before Submit -->
+            <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200 text-xs font-bold space-y-2">
+                <h4 class="text-sky-900 font-extrabold">Daftar Periksa Sebelum Dikumpulkan (Centang Jika Sudah):</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-normal text-slate-700">
+                    <label class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-sky-200 cursor-pointer">
+                        <input type="checkbox" id="chk1" class="rounded text-sky-600"> <span>Saya sudah memberikan judul.</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-sky-200 cursor-pointer">
+                        <input type="checkbox" id="chk2" class="rounded text-sky-600"> <span>Saya sudah menulis pernyataan umum.</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-sky-200 cursor-pointer">
+                        <input type="checkbox" id="chk3" class="rounded text-sky-600"> <span>Saya sudah menjelaskan tahapan hujan urut.</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-sky-200 cursor-pointer">
+                        <input type="checkbox" id="chk4" class="rounded text-sky-600"> <span>Saya sudah memakai kata hubung.</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-sky-200 cursor-pointer">
+                        <input type="checkbox" id="chk5" class="rounded text-sky-600"> <span>Saya sudah menulis bagian penutup.</span>
+                    </label>
+                    <label class="flex items-center space-x-2 bg-white p-2 rounded-xl border border-sky-200 cursor-pointer">
+                        <input type="checkbox" id="chk6" class="rounded text-sky-600"> <span>Saya sudah menggunakan bahasa sendiri.</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('kegiatan3')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('kegiatan5')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Lanjut Berbagi & Bercerita <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 8. KEGIATAN 5 – AYO BERBAGI DAN BERCERITA ================= -->
+        <section id="sec-kegiatan5" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200 space-y-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-600 text-2xl font-bold">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <div>
+                    <span class="bg-sky-200 text-sky-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">PBL Step 5: Evaluasi & Unjuk Kerja</span>
+                    <h2 class="text-2xl font-bold text-sky-900">Kegiatan 5: Ayo Berbagi & Bercerita</h2>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-600 font-semibold leading-relaxed">
+                "Beberapa murid akan membacakan hasil teks eksplanasi yang telah dibuat di depan kelas. Dengarkan presentasi temanmu dan berikan umpan balik yang membangun!"
+            </p>
+
+            <div class="bg-sky-50 p-6 rounded-3xl border border-sky-200 space-y-4 text-xs font-bold">
+                <h3 class="text-sky-900 font-extrabold text-sm border-b border-sky-300 pb-2 flex items-center">
+                    <i class="fa-solid fa-heart-circle-check text-rose-500 mr-2"></i> Lembar Tanggapan Teman (Umpan Balik Positif):
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-slate-700 mb-1">Nama Teman yang Tampil:</label>
+                        <input type="text" id="k5-nama-teman" placeholder="Tulis nama temanmu..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal">
+                    </div>
+                    <div>
+                        <label class="block text-slate-700 mb-1">Judul Teks yang Dibacakan:</label>
+                        <input type="text" id="k5-judul-teman" placeholder="Judul teks teman..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-700 mb-1">Hal Menarik yang Saya Temukan dari Tulisan Teman:</label>
+                    <textarea id="k5-menarik" rows="2" placeholder="Contoh: Penjelasannya sangat lengkap dan suaranya jelas..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-slate-700 mb-1">Saran / Masukan Positif yang Ingin Saya Berikan:</label>
+                    <textarea id="k5-saran" rows="2" placeholder="Contoh: Tulisan sudah bagus, lain kali bisa ditambah kata hubung..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('kegiatan4')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('refleksi')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Lanjut Refleksi Diri <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= 9. KEGIATAN 6 – REFLEKSI DIRI ================= -->
+        <section id="sec-refleksi" class="page-section hidden bg-white rounded-3xl p-6 md:p-8 shadow-md border border-sky-200 space-y-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center text-rose-600 text-2xl font-bold">
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+                <div>
+                    <span class="bg-rose-200 text-rose-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Mindful Learning</span>
+                    <h2 class="text-2xl font-bold text-sky-900">Kegiatan 6: Refleksi Diri & Penutup</h2>
+                </div>
+            </div>
+
+            <!-- Self Assessment Table -->
+            <div class="space-y-4">
+                <h3 class="text-xs font-extrabold text-sky-900">
+                    Mari Nilai Kemampuan Dirimu Sendiri (Pilihlah Salah Satu):
+                </h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse border border-sky-200 rounded-2xl overflow-hidden">
+                        <thead>
+                            <tr class="bg-sky-600 text-white font-extrabold">
+                                <th class="p-3 border border-sky-500">Pernyataan Indikator Refleksi</th>
+                                <th class="p-3 border border-sky-500 text-center w-28">Sudah Bisa</th>
+                                <th class="p-3 border border-sky-500 text-center w-36">Masih Perlu Berlatih</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-sky-200 bg-sky-50/50 font-bold">
+                            <tr>
+                                <td class="p-3 border border-sky-200">1. Saya dapat menemukan informasi penting dalam teks eksplanasi.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref1" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref1" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200">2. Saya dapat mengenali struktur teks eksplanasi.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref2" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref2" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200">3. Saya dapat menjelaskan hubungan sebab-akibat terjadinya hujan.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref3" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref3" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200">4. Saya dapat mengurutkan proses terjadinya hujan.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref4" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref4" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200">5. Saya dapat membuat kerangka teks eksplanasi.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref5" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref5" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200">6. Saya dapat menulis teks eksplanasi menggunakan bahasa sendiri.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref6" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref6" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 border border-sky-200">7. Saya berani menyampaikan hasil pekerjaan di depan kelas.</td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref7" value="Sudah Bisa" class="w-4 h-4 text-sky-600"></td>
+                                <td class="p-3 border border-sky-200 text-center"><input type="radio" name="ref7" value="Perlu Berlatih" class="w-4 h-4 text-sky-600"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Emotion & Open Reflection -->
+            <div class="space-y-4 text-xs font-bold">
+                <div class="bg-sun-50 p-4 rounded-2xl border border-sun-200 text-center space-y-3">
+                    <label class="block text-sun-900 text-sm">Bagaimana Perasaanmu Setelah Mengikuti Pembelajaran Hari Ini?</label>
+                    <div class="flex justify-center space-x-6 text-3xl">
+                        <label class="cursor-pointer hover:scale-125 transition transform">
+                            <input type="radio" name="emoji-feel" value="Senang" class="hidden peer">
+                            <span class="grayscale peer-checked:grayscale-0">😃</span>
+                            <span class="block text-[10px] text-slate-600 mt-1 font-normal">Senang</span>
+                        </label>
+                        <label class="cursor-pointer hover:scale-125 transition transform">
+                            <input type="radio" name="emoji-feel" value="Biasa Saja" class="hidden peer">
+                            <span class="grayscale peer-checked:grayscale-0">😐</span>
+                            <span class="block text-[10px] text-slate-600 mt-1 font-normal">Biasa Saja</span>
+                        </label>
+                        <label class="cursor-pointer hover:scale-125 transition transform">
+                            <input type="radio" name="emoji-feel" value="Masih Bingung" class="hidden peer">
+                            <span class="grayscale peer-checked:grayscale-0">🤔</span>
+                            <span class="block text-[10px] text-slate-600 mt-1 font-normal">Masih Bingung</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">Apa hal baru yang kamu pelajari hari ini?</label>
+                        <textarea id="ref-halbaru" rows="2" placeholder="Tuliskan di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-2xl border border-sky-200">
+                        <label class="block text-sky-900 mb-1">Kegiatan mana yang paling kamu sukai?</label>
+                        <textarea id="ref-suka" rows="2" placeholder="Tuliskan di sini..." class="w-full bg-white border border-sky-300 rounded-xl p-2.5 text-slate-800 focus:ring-2 focus:ring-sky-400 focus:outline-none font-normal"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print / Save Call to Action Footer -->
+            <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-6 rounded-3xl text-center space-y-3 no-print">
+                <h3 class="text-lg font-bold">Hore! Kamu Sudah Menyelesaikan Seluruh Lembar Kerja! 🎉</h3>
+                <p class="text-xs text-sky-100 max-w-md mx-auto">
+                    Klik tombol di bawah ini untuk mengunduh atau mencetak hasil pekerjaan LKPD kamu agar bisa dikumpulkan kepada Ibu Guru Srianti.
+                </p>
+                <button onclick="triggerPrint()" class="bg-sun-400 hover:bg-sun-500 text-slate-900 font-extrabold px-8 py-3 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 text-xs inline-flex items-center space-x-2 border-b-2 border-sun-600">
+                    <i class="fa-solid fa-file-pdf text-base"></i>
+                    <span>CETAK / SIMPAN JAWABAN LKPD</span>
+                </button>
+            </div>
+
+            <div class="flex justify-between items-center mt-6 no-print">
+                <button onclick="switchTab('kegiatan5')" class="text-sky-700 font-bold text-xs hover:underline">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                </button>
+                <button onclick="switchTab('sampul')" class="bg-sky-600 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs hover:bg-sky-700 transition">
+                    Kembali ke Halaman Utama <i class="fa-solid fa-house ml-1"></i>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER COPYRIGHT -->
+    <footer class="bg-white border-t border-sky-200 py-4 text-center text-xs text-slate-500 no-print mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            LKPD Digital Bahasa Indonesia SD Kelas V (Fase C) • Disusun oleh: <strong class="text-sky-800">Srianti</strong> • Kurikulum Merdeka 2026
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT TAB & PRINT LOGIC -->
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            // Show selected section
+            const targetSec = document.getElementById('sec-' + tabId);
+            if (targetSec) {
+                targetSec.classList.remove('hidden');
+            }
+
+            // Update Tab Nav Button styles
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('bg-sky-800', 'text-white');
+                btn.classList.add('text-sky-100');
+            });
+
+            const activeBtn = document.getElementById('tab-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-sky-800', 'text-white');
+                activeBtn.classList.remove('text-sky-100');
+            }
+
+            // Scroll top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Trigger browser print dialog formatted for print
+        function triggerPrint() {
+            // Unhide all sections for complete printing
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.remove('hidden'));
+
+            window.print();
+
+            // Re-hide sections after print dialog closes
+            setTimeout(() => {
+                switchTab('sampul');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
